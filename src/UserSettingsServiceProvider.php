@@ -24,6 +24,7 @@ class UserSettingsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/config/user-settings.php' => config_path('user-settings.php'),
         ]);
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations');
     }
 
     /**
