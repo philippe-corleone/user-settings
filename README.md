@@ -10,7 +10,7 @@ This package is a Laravel 5 package. It handles the user settings for a logged i
   - Laravel >=5
   - PHP >=7
 
-## Installation
+## Installati
 1. At first, add the package to your `composer.json`:
 ```
 composer require "corleone/user-settings"
@@ -41,7 +41,7 @@ php artisan user-settings:migration
 
 ## Configuration of the `config/user-settings.php` file
 
-Set `table`, `column` and `primary_key` to match your user table. The `primary_key` should be the user id.
+Set `table`, `column` and `primary_key` to match your user table. The `primary_key` should be the users id.
 
 In the `settings` array you can set your default values for the specific settings, e.g.:
 ```
@@ -61,7 +61,8 @@ In the `settings` array you can set your default values for the specific setting
 ## Usage
 
 You can use the `UserSettings` class in controllers and views. The settings will be stored as json into your settings column.
-> Note: If you want to use it in a controller or class you have to set `use Corleone\UserSettings\UserSettings;`
+> Note: If you want to use it in a controller or class you have to set 
+> `use Corleone\UserSettings\UserSettings;`
 
 ### Set a setting
 This method will set (if the setting is defined in your `config/user-settings.php` file) or add (if the default is not defined) a setting to the json.
@@ -83,10 +84,10 @@ UserSettings::reset(string [setting]): bool;
 ```
 This method will return `true` if the setting was set to default from the `config/user-settings.php` file and `false` if the setting was simply deleted.
 
-> Note: If you want to reset all settings on a user, use the `UserSettings::SetDefaultSettings()` method.
+> Note: If you want to reset all settings of a user, use the `UserSettings::SetDefaultSettings()` method.
 
 ### Get a setting
-This method will you return the value of a setting.
+This method will return the value of a setting.
 ```
 UserSettings::get(string [setting]);
 ```
