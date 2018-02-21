@@ -24,11 +24,10 @@ composer require "corleone/user-settings"
 php artisan vendor:publish
 php artisan user-settings:migration
 ```
-4. After that you will see the migration file in your `database/migrations` directory. Customize the `table` and `column` name in this migration file as you like.
 
-5. Run `php artisan migrate` to add the settings column to your users table.
+4. Run `php artisan migrate` to add the settings column to your users table. (Note: If you customize this file, copy this to youR `database/migrations` directory and do this, than run this command)
 
-6. In your `config/user-settings.php` you can see a twodimensional array, which you can configurate now:
+5. In your `config/user-settings.php` you can see a twodimensional array, which you can configurate now:
 ```
 'database' => [
     'table' => 'users',
