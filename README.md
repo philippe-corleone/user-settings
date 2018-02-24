@@ -10,7 +10,7 @@ This package is a Laravel 5 package. It handles the user settings for a logged i
   - Laravel >=5
   - PHP >=7
 
-## Installati
+## Installation
 1. At first, add the package to your `composer.json`:
 ```
 composer require "corleone/user-settings"
