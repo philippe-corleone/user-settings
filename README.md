@@ -16,7 +16,7 @@ This package is a Laravel 5 package. It handles the user settings for a logged i
 composer require "corleone/user-settings"
 ```
 2. Open your `config/app.php` and add the folloing line to your aliases:
-```
+```PHP
 'UserSettings' => \Corleone\UserSettings\UserSettings::class,
 ```
 3. Publish the migration and the `config/user-sattings.php` file with the following command using your terminal:
