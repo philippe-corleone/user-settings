@@ -28,7 +28,7 @@ php artisan user-settings:migration
 4. Run `php artisan migrate` to add the settings column to your users table. (Note: If you customize this file, copy this to youR `database/migrations` directory and do this, than run this command)
 
 5. In your `config/user-settings.php` you can see a twodimensional array, which you can configurate now:
-```
+```PHP
 'database' => [
     'table' => 'users',
     'column' => 'settings',
@@ -44,7 +44,7 @@ php artisan user-settings:migration
 Set `table`, `column` and `primary_key` to match your user table. The `primary_key` should be the users id.
 
 In the `settings` array you can set your default values for the specific settings, e.g.:
-```
+```PHP
 'database' => [
     'table' => 'users',
     'column' => 'settings',
@@ -66,41 +66,41 @@ You can use the `UserSettings` class in controllers and views. The settings will
 
 ### Set a setting
 This method will set (if the setting is defined in your `config/user-settings.php` file) or add (if the default is not defined) a setting to the json.
-```
+```PHP
 UserSettings::set(string [setting], [value]);
 ```
 > Note: Set method will match the data typ from the `config/user-settings.php` value, if they exists. So you can better develop your application.
 
 ### Set default settings
 This method will set the default settings from your `config/user-settings.php` file to the users table.
-```
+```PHP
 UserSettings::setDefaultSettings();
 ```
 
 ### Reset a Setting
 This method will reset a setting to the default from your `config/user-settings.php` file, if they exists. Otherwise it will delete it simlpy from the json.
-```
+```PHP
 UserSettings::reset(string [setting]): bool;
 ```
 This method will return `true` if the setting was set to default from the `config/user-settings.php` file and `false` if the setting was simply deleted.
 
-> Note: If you want to reset all settings of a user, use the `UserSettings::SetDefaultSettings()` method.
+> Note: If you want to reset all settings of a user, use the `PHP UserSettings::SetDefaultSettings()`
 
 ### Get a setting
 This method will return the value of a setting.
-```
+```PHP
 UserSettings::get(string [setting]);
 ```
 
 ### Get all settings
 This method will return all settings as an object.
-```
+```PHP
 UserSettings::all(): object;
 ```
 
 ### Ask if a user have a specific setting
 This method will return `true` if a user has a setting otherwise it will return `false`.
-```
+```PHP
 UserSettings::has(string [setting]): bool;
 ```
 
