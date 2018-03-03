@@ -43,6 +43,16 @@ class UserSettings
     protected function __destruct(){}
 
     /**
+     * Check out if the settings got
+     */
+    protected static function settingsExists()
+    {
+        if(self::$got)
+            return;
+        self::getSettings();
+    }
+
+    /**
      * Get all settings of the current user from database
      *
      * If the settings column empty the default setting will load in an object from config file.
@@ -56,12 +66,14 @@ class UserSettings
             ->where(config('user-settings.database.primary_key'), '=', Auth::id())
             ->get();
 
-        if($data[0]->settings === ''){
+        $settings = json_decode($data[0]->settings);
+
+        if(json_last_error() !== JSON_ERROR_NONE){
             self::$settings = (object) config('user-settings.settings');
             return;
         }
 
-        self::$settings = json_decode($data[0]->settings);
+        self::$settings = $settings;
     }
 
     /**
@@ -111,6 +123,7 @@ class UserSettings
         if(config('user-settings.settings.' . $key) && gettype($value) !== gettype(config('user-settings.settings.' . $key))){
             throw new InvalidArgumentException(('The expected type is "' . gettype(config('user-settings.settings.' . $key)) . '"! "' . gettype($value) . '" was given.'));
         }
+
         self::$settings->{$key} = $value;
         self::save();
     }
@@ -168,16 +181,6 @@ class UserSettings
         DB::table(config('user-settings.database.table'))
             ->where(config('user-settings.database.primary_key'), '=', Auth::id())
             ->update([config('user-settings.database.column') => json_encode(self::$settings)]);
-    }
-
-    /**
-     * Check out if the settings got
-     */
-    protected static function settingsExists()
-    {
-        if(self::$got)
-            return;
-        self::getSettings();
     }
 
 }
